@@ -14,3 +14,5 @@ make html serve
 ```bash
 pelican-themes --list --verbose
 ```
+
+* [adding content - add md files to /output](https://docs.getpelican.com/en/latest/quickstart.html#create-an-article)
