@@ -1,0 +1,1 @@
+theme_path = r"C:\Users\Dan\AppData\Local\Programs\Python\Python39\lib\site-packages\pelican\themes\pelican-mg"
