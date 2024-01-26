@@ -4,7 +4,7 @@ from env import theme_path
 
 AUTHOR = 'dydev012'
 SITENAME = 'notes et al.'
-SITEURL = "dydev012.github.io"
+SITEURL = "https://dydev012.github.io"
 
 PATH = "content"
 
