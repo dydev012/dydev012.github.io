@@ -6,6 +6,37 @@ a {
   a:hover {
     color: #0099cc; }
 
+
+.side-header {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.uk-nav-side > .side-header-active {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #031926;
+
+}
+
+.uk-nav-offcanvas > .side-header-active {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 12px;
+  background-color: #1a1a1a;
+
+}
+
+.reset-style {
+  all: revert;
+}
+
+.no-hover{
+  background-color: unset !important;
+}
+
 .uk-navbar-brand {
   text-transform: uppercase; }
 
