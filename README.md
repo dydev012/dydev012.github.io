@@ -4,9 +4,13 @@
 
 Typical workflow:-
 
-1. Add page to **content**
-2. Verify with devserver
-3. Build
+1. Run local devserver
+```bash
+make devserver
+```
+2. Adjust pages in **content**
+3. Verify locally
+4. Build
 ```bash
 make html
 ```
@@ -14,5 +18,6 @@ or
 ```bash
 make publish
 ```
-4. Push to main
-5. $$$
+5. Push to main
+6. $$$
+
