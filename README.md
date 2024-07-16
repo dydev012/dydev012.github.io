@@ -1,18 +1,18 @@
-# dydev012.github.io
+### Usage Notes 
 
-#### Notes
-* Adding themes
-```bash
-pelican-themes -i <theme_path>
-```
-* Rebuilding site
-```bash
-make html serve
-```
+* pushing to main will push the **output** folder to the gh-pages branch and deploy the site.
 
-* listing themes
-```bash
-pelican-themes --list --verbose
-```
+Typical workflow:-
 
-* [adding content - add md files to /output](https://docs.getpelican.com/en/latest/quickstart.html#create-an-article)
+1. Add page to **content**
+2. Verify with devserver
+3. Build
+```bash
+make html
+```
+or
+```bash
+make publish
+```
+4. Push to main
+5. $$$
