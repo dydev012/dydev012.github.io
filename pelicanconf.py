@@ -1,12 +1,13 @@
 import sys
 sys.path.append('.')
-from env import theme_path
 
 AUTHOR = 'dydev012'
-SITENAME = 'notes et al.'
+SITENAME = 'notes'
+
 SITEURL = "https://dydev012.github.io"
 
 PATH = "content"
+THEME = './themes/mg-theme'
 
 TIMEZONE = 'GB'
 
@@ -18,6 +19,7 @@ CATEGORY_FEED_ATOM = None
 TRANSLATION_FEED_ATOM = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
+DISPLAY_PAGES_ON_MENU = False
 
 # Social widget
 SOCIAL = (
@@ -26,7 +28,6 @@ SOCIAL = (
 
 DEFAULT_PAGINATION = 5
 
-THEME = theme_path
 # enable search within theme
 TAG_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
