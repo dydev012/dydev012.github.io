@@ -2,3 +2,7 @@
 # tough bug to spot - pelican@4.9.1 does not complain if it's not installed.
 markdown==3.6
 pelican==4.9.1
+typogriphy>=2.0.7
+beautifulsoup4>=4.0.1
+# https://github.com/pelican-plugins/render-math
+pelican-render-math>=1.0.3

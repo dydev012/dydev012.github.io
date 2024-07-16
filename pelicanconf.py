@@ -28,6 +28,11 @@ SOCIAL = (
 
 DEFAULT_PAGINATION = 5
 
+# https://github.com/pelican-plugins/render-math?tab=readme-ov-file#settings
+# MATH_JAX = {
+
+# }
+
 # enable search within theme
 TAG_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
