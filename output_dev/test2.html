@@ -9,7 +9,6 @@
 <title>Test 2</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
-<link rel="shortcut icon" href="http://127.0.0.1:8000/" type="">
 <meta name="author" content="dydev012">
 <meta name="copyright" content="dydev012">
 <meta name="twitter:card" content="summary" />
@@ -34,7 +33,7 @@
 <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/css/uikit.min.css">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/css/components/search.min.css">
-<link rel="stylesheet" href="http://127.0.0.1:8000/theme/css/tipuesearch.css">
+<link rel="stylesheet" href="http://127.0.0.1:8000/theme/css/stork.css">
 <link rel="stylesheet" href="http://127.0.0.1:8000/theme/css/solarized.css">
 <link rel="stylesheet" href="http://127.0.0.1:8000/theme/css/main.css">
 <link rel="icon" href="http://127.0.0.1:8000/theme/favicon.png">
@@ -84,9 +83,11 @@
         <div class="uk-width-medium-1-5 uk-hidden-small">
 
             <div class="uk-panel uk-panel-box">
-                <form class="uk-search" action="http://127.0.0.1:8000/search" data-uk-search>
-                    <input class="uk-search-field tipue_search" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
+                <form class="uk-search" data-uk-search>
+                    <input class="uk-search-field" data-stork="sitesearch" type="search" name="q" autocomplete="off" placeholder="Search..." onkeydown="return event.key != 'Enter';">
                 </form>
+                <div data-stork="sitesearch-output"></div>
+
             </div>
 
             <div class="uk-panel uk-panel-box">
@@ -146,14 +147,19 @@
 <div id="mg-offcanvas" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
 
-        <form class="uk-search" action="http://127.0.0.1:8000/search" data-uk-search>
-            <input class="uk-search-field" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
-        </form>
-
+        
         <ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
+            
             <li class="side-header"><a href="http://127.0.0.1:8000/categories">Categories</a></li>
+            
             <li class="uk-active"><a href="http://127.0.0.1:8000/category/category-a">Category A</a></li>
             <li ><a href="http://127.0.0.1:8000/category/category-b">Category B</a></li>
+            
+            <li class="side-header"><a href="http://127.0.0.1:8000/tags">Tags</a></li>
+            
+            <li ><a href="http://127.0.0.1:8000/tag/tag1">tag1</a></li>
+            <li ><a href="http://127.0.0.1:8000/tag/tag2">tag2</a></li>
+            
         </ul>
     </div>
 </div>
@@ -161,12 +167,12 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/js/uikit.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/js/components/search.min.js"></script>
-<script src="http://127.0.0.1:8000/theme/js/tipuesearch_set.js"></script>
-<script src="http://127.0.0.1:8000/theme/js/tipuesearch.js"></script>
+<script src="https://files.stork-search.net/releases/v1.5.0/stork.js"></script>
+<script>
+    stork.register("sitesearch", "http://127.0.0.1:8000/search-index.st");
+</script>
 <script src="http://127.0.0.1:8000/theme/js/jquery.sticky-kit.js"></script>
 <script src="http://127.0.0.1:8000/theme/js/plugins.js"></script>
-<script src="http://127.0.0.1:8000/theme/js/main-search.js"></script>
 
 
 

@@ -30,6 +30,9 @@ SUMMARY_MAX_LENGTH = 0 # Above
 SUBSUMMARY_MAX_LENGTH = 100 # Below
 SUMMARY_END_SUFFIX = '…'
 DEFAULT_PAGINATION = False
+STORK_INPUT_OPTIONS = {
+    'html_selector': "main"
+}
 
 # https://github.com/pelican-plugins/render-math?tab=readme-ov-file#settings
 MATH_JAX = {
@@ -52,8 +55,7 @@ MATH_JAX = {
 # enable search within theme
 TAG_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
-DIRECT_TEMPLATES = ('index', 'categories', 'tags', 'archives', 'search', 'tipue_search')
-TIPUE_SEARCH_SAVE_AS = 'tipue_search.json'
+DIRECT_TEMPLATES = ('index', 'categories', 'tags', 'archives')
 
 TAG_URL = 'tag/{slug}.html'
 TAG_SAVE_AS = 'tag/{slug}.html'

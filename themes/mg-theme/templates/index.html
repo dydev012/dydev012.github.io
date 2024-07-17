@@ -14,6 +14,7 @@
                     
                     {% if article.tags%}
                     <span style="color: #444;">• [ </span>
+                    
                     {% for tag in article.tags%}
                     <a href="{{SITEURL}}/{{tag.url|rm_html_suffix}}">{{tag|category2url}}</a>{% if not loop.last %}<span style="color: #444;">, </span>{% endif %}
                     {% endfor %}

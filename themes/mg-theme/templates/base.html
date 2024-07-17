@@ -21,7 +21,6 @@
 <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{% block description %}{{ DESCRIPTION }}{% endblock %}">
-<link rel="shortcut icon" href="{{ SITEURL }}/{{ FAVICON }}" type="{{ FAVICON_TYPE }}">
 <meta name="author" content="{{ AUTHOR }}">
 <meta name="copyright" content="{{ AUTHOR }}">
 <meta name="twitter:card" content="summary" />
@@ -52,7 +51,7 @@
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/css/uikit.min.css">
 {% if not DISABLE_SEARCH %}
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/css/components/search.min.css">
-<link rel="stylesheet" href="{{ SITEURL }}/theme/css/tipuesearch.css">
+<link rel="stylesheet" href="{{ SITEURL }}/theme/css/stork.css">
 {% endif %}
 <link rel="stylesheet" href="{{ SITEURL }}/theme/css/solarized.css">
 <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css">
@@ -87,9 +86,11 @@
 
             {% if not DISABLE_SEARCH %}
             <div class="uk-panel uk-panel-box">
-                <form class="uk-search" action="{{ SITEURL }}/search" data-uk-search>
-                    <input class="uk-search-field tipue_search" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
+                <form class="uk-search" data-uk-search>
+                    <input class="uk-search-field" data-stork="sitesearch" type="search" name="q" autocomplete="off" placeholder="Search..." onkeydown="return event.key != 'Enter';">
                 </form>
+                <div data-stork="sitesearch-output"></div>
+
             </div>
             {% endif %}
 
@@ -162,21 +163,29 @@
 <div id="mg-offcanvas" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
 
-        {% if not DISABLE_SEARCH %}
-        <form class="uk-search" action="{{ SITEURL }}/search" data-uk-search>
-            <input class="uk-search-field" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
-        </form>
-        {% endif %}
-
+        
         <ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
+            
             {% if page_name == 'categories'%}
             <li class="side-header-active"><a href="{{ SITEURL }}/categories" style="color: white;">Categories</a></li>
             {% else %}
             <li class="side-header"><a href="{{ SITEURL }}/categories">Categories</a></li>
             {% endif %}
+            
             {% for cat, _ in categories %}
             <li {% if cat == category %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url|rm_html_suffix}}">{{ cat }}</a></li>
             {% endfor %}
+            
+            {% if page_name == 'tags'%}
+            <li class="side-header-active"><a href="{{ SITEURL }}/tags" style="color: white;">Tags</a></li>
+            {% else %}
+            <li class="side-header"><a href="{{ SITEURL }}/tags">Tags</a></li>
+            {% endif %}
+            
+            {% for _tag, _ in tags %}
+            <li {% if _tag == tag %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ _tag.url|rm_html_suffix }}">{{ _tag }}</a></li>
+            {% endfor %}
+            
         </ul>
     </div>
 </div>
@@ -185,16 +194,16 @@
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/js/uikit.min.js"></script>
 {% if not DISABLE_SEARCH %}
-<script src="//cdnjs.cloudflare.com/ajax/libs/uikit/2.23.0/js/components/search.min.js"></script>
-<script src="{{ SITEURL }}/theme/js/tipuesearch_set.js"></script>
-<script src="{{ SITEURL }}/theme/js/tipuesearch.js"></script>
+<script src="https://files.stork-search.net/releases/v1.5.0/stork.js"></script>
+<script>
+    stork.register("sitesearch", "{{ SITEURL }}/search-index.st");
+</script>
 {% endif %}
 <script src="{{ SITEURL }}/theme/js/jquery.sticky-kit.js"></script>
 <script src="{{ SITEURL }}/theme/js/plugins.js"></script>
 {% if DISABLE_SEARCH %}
 <script src="{{ SITEURL }}/theme/js/main.js"></script>
 {% else %}
-<script src="{{ SITEURL }}/theme/js/main-search.js"></script>
 {% endif %}
 
 {% include 'disqus_count.html' %}

@@ -1,0 +1,33 @@
+[input]
+html_selector = "main"
+base_directory = "/mnt/c/Users/Dan/Documents/repos/dydev012.github.io@main/output"
+
+[[input.files]]
+path = "test1.html"
+url = "/test1.html"
+title = "Test 1"
+
+[[input.files]]
+path = "test2.html"
+url = "/test2.html"
+title = "Test 2"
+
+[[input.files]]
+path = "test3.html"
+url = "/test3.html"
+title = "Test 3"
+
+[[input.files]]
+path = "test4.html"
+url = "/test4.html"
+title = "Test 4"
+
+[[input.files]]
+path = "test5.html"
+url = "/test5.html"
+title = "Test 5"
+
+[[input.files]]
+path = "test6.html"
+url = "/test6.html"
+title = "Test 6"

@@ -6,3 +6,6 @@ typogrify>=2.0.7
 beautifulsoup4>=4.0.1
 # https://github.com/pelican-plugins/render-math
 pelican-render-math>=1.0.3
+# https://github.com/pelican-plugins/search
+# requires stork bin
+pelican-search==1.1.0
