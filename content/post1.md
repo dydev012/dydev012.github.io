@@ -1,7 +1,7 @@
-Title: Pagination Test 1
-Date: 2010-12-03 10:20
+Title: Test 1
+Date: 2012-12-03 10:20
 Modified: 2010-12-05 19:30
-Category: TestB
+Category: Category A
 Tags: pelican, publishing
 Slug: test1
 Authors: dy

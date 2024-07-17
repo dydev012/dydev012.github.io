@@ -28,7 +28,7 @@ SOCIAL = (
 
 SUMMARY_MAX_LENGTH = 100
 SUMMARY_END_SUFFIX = '…'
-DEFAULT_PAGINATION = 2
+DEFAULT_PAGINATION = False
 
 # https://github.com/pelican-plugins/render-math?tab=readme-ov-file#settings
 MATH_JAX = {
@@ -56,18 +56,16 @@ TIPUE_SEARCH_SAVE_AS = 'tipue_search.json'
 # Uncomment following line if you want doscument-relative URLs when developing
 # RELATIVE_URLS = True
 
-from filters import clean_mathjax, extract_first_p_tag_content
+from filters import clean_mathjax, extract_first_p_tag_content, capitalize
+
 def generate_summary(content):
     # if in markup form
     nojax_text = extract_first_p_tag_content(content)
     nojax_text = ' '.join(clean_mathjax(nojax_text).split(' ')[:SUMMARY_MAX_LENGTH])
     nojax_text = nojax_text.rstrip()
-    print(nojax_text)
-    print()
-
-    
     return nojax_text
 
 JINJA_FILTERS = {
     'generate_summary': generate_summary,
+    # 'capitalize': capitalizes
 }
