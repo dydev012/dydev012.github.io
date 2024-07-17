@@ -36,8 +36,8 @@
 <link rel="stylesheet" href="https://dydev012.github.io/theme/css/tipuesearch.css">
 <link rel="stylesheet" href="https://dydev012.github.io/theme/css/solarized.css">
 <link rel="stylesheet" href="https://dydev012.github.io/theme/css/main.css">
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<link rel="icon" href="https://dydev012.github.io/theme/favicon.png">
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" async></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -51,7 +51,7 @@
         <a class="mg-brand uk-navbar-brand uk-hidden-small" href="https://dydev012.github.io">notes</a>
         <div class="mg-tagline uk-navbar-content uk-hidden-small"></div>
         <a class="uk-navbar-toggle uk-visible-small" href="#mg-offcanvas" data-uk-offcanvas></a>
-        <a class="mg-brand uk-navbar-brand uk-navbar-center uk-visible-small" href="https://dydev012.github.io">notes</a>
+        <a class="mg-brand uk-navbar-brand uk-navbar-center uk-visible-small main-header" href="https://dydev012.github.io">notes</a>
 
     </div>
 </header>
@@ -59,7 +59,6 @@
 <main class="mg-main">
 
 <div class="uk-container uk-container-center">
-
     <div class="uk-grid" data-uk-grid-margin>
 <div class="uk-width-medium-4-5">
     <h1 class="uk-heading-large">Search results</h1>
@@ -71,16 +70,23 @@
         <div class="uk-width-medium-1-5 uk-hidden-small">
 
             <div class="uk-panel uk-panel-box">
-                <form class="uk-search" action="https://dydev012.github.io/search.html" data-uk-search>
+                <form class="uk-search" action="https://dydev012.github.io/search" data-uk-search>
                     <input class="uk-search-field tipue_search" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
                 </form>
             </div>
 
             <div class="uk-panel uk-panel-box">
                 <ul class="uk-nav uk-nav-side">
+
                     <li class="side-header"><a href="https://dydev012.github.io/categories">Categories</a></li>
-                    <li ><a href="https://dydev012.github.io/category/category-a.html">Category A</a></li>
-                    <li ><a href="https://dydev012.github.io/category/category-b.html">Category B</a></li>
+
+                    <li ><a href="https://dydev012.github.io/category/category-a">Category A</a></li>
+                    <li ><a href="https://dydev012.github.io/category/category-b">Category B</a></li>
+
+                    <li class="side-header"><a href="https://dydev012.github.io/tags">Tags</a></li>
+
+                    <li ><a href="https://dydev012.github.io/tag/tag1">tag1</a></li>
+                    <li ><a href="https://dydev012.github.io/tag/tag2">tag2</a></li>
 
                 </ul>
             </div>
@@ -126,14 +132,14 @@
 <div id="mg-offcanvas" class="uk-offcanvas">
     <div class="uk-offcanvas-bar">
 
-        <form class="uk-search" action="https://dydev012.github.io/search.html" data-uk-search>
+        <form class="uk-search" action="https://dydev012.github.io/search" data-uk-search>
             <input class="uk-search-field" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
         </form>
 
         <ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
             <li class="side-header"><a href="https://dydev012.github.io/categories">Categories</a></li>
-            <li ><a href="https://dydev012.github.io/category/category-a.html">Category A</a></li>
-            <li ><a href="https://dydev012.github.io/category/category-b.html">Category B</a></li>
+            <li ><a href="https://dydev012.github.io/category/category-a">Category A</a></li>
+            <li ><a href="https://dydev012.github.io/category/category-b">Category B</a></li>
         </ul>
     </div>
 </div>

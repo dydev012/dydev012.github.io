@@ -56,8 +56,8 @@
 {% endif %}
 <link rel="stylesheet" href="{{ SITEURL }}/theme/css/solarized.css">
 <link rel="stylesheet" href="{{ SITEURL }}/theme/css/main.css">
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+<link rel="icon" href="{{SITEURL}}/theme/favicon.png">
+<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" async></script>
 </head>
 <body>
 <!--[if lt IE 7]>
@@ -71,7 +71,7 @@
         <a class="mg-brand uk-navbar-brand uk-hidden-small" href="{{ SITEURL }}">{% if ALT_NAME %}{{ ALT_NAME }}{% else %}{{ SITENAME }}{% endif %}</a>
         <div class="mg-tagline uk-navbar-content uk-hidden-small">{% if SITESUBTITLE %}{{ SITESUBTITLE }}{% endif %}</div>
         <a class="uk-navbar-toggle uk-visible-small" href="#mg-offcanvas" data-uk-offcanvas></a>
-        <a class="mg-brand uk-navbar-brand uk-navbar-center uk-visible-small" href="{{ SITEURL }}">{% if ALT_NAME %}{{ ALT_NAME }}{% else %}{{ SITENAME }}{% endif %}</a>
+        <a class="mg-brand uk-navbar-brand uk-navbar-center uk-visible-small main-header" href="{{ SITEURL }}">{% if ALT_NAME %}{{ ALT_NAME }}{% else %}{{ SITENAME }}{% endif %}</a>
 
     </div>
 </header>
@@ -79,10 +79,7 @@
 <main class="mg-main">
 
 <div class="uk-container uk-container-center">
-
     <div class="uk-grid" data-uk-grid-margin>
-        {% block content_title %}
-        {% endblock %}
         {% block content %}
         {% endblock %}
 
@@ -90,7 +87,7 @@
 
             {% if not DISABLE_SEARCH %}
             <div class="uk-panel uk-panel-box">
-                <form class="uk-search" action="{{ SITEURL }}/search.html" data-uk-search>
+                <form class="uk-search" action="{{ SITEURL }}/search" data-uk-search>
                     <input class="uk-search-field tipue_search" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
                 </form>
             </div>
@@ -98,13 +95,25 @@
 
             <div class="uk-panel uk-panel-box">
                 <ul class="uk-nav uk-nav-side">
+
                     {% if page_name == 'categories'%}
                     <li class="side-header-active"><a href="{{ SITEURL }}/categories" style="color: white;">Categories</a></li>
                     {% else %}
                     <li class="side-header"><a href="{{ SITEURL }}/categories">Categories</a></li>
                     {% endif %}
+
                     {% for cat, _ in categories %}
-                    <li {% if cat == category %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+                    <li {% if cat == category %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url|rm_html_suffix }}">{{ cat }}</a></li>
+                    {% endfor %}
+
+                    {% if page_name == 'tags'%}
+                    <li class="side-header-active"><a href="{{ SITEURL }}/tags" style="color: white;">Tags</a></li>
+                    {% else %}
+                    <li class="side-header"><a href="{{ SITEURL }}/tags">Tags</a></li>
+                    {% endif %}
+
+                    {% for _tag, _ in tags %}
+                    <li {% if _tag == tag %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ _tag.url|rm_html_suffix }}">{{ _tag }}</a></li>
                     {% endfor %}
 
                 </ul>
@@ -154,7 +163,7 @@
     <div class="uk-offcanvas-bar">
 
         {% if not DISABLE_SEARCH %}
-        <form class="uk-search" action="{{ SITEURL }}/search.html" data-uk-search>
+        <form class="uk-search" action="{{ SITEURL }}/search" data-uk-search>
             <input class="uk-search-field" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Search...">
         </form>
         {% endif %}
@@ -166,7 +175,7 @@
             <li class="side-header"><a href="{{ SITEURL }}/categories">Categories</a></li>
             {% endif %}
             {% for cat, _ in categories %}
-            <li {% if cat == category %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+            <li {% if cat == category %}class="uk-active"{% endif %}><a href="{{ SITEURL }}/{{ cat.url|rm_html_suffix}}">{{ cat }}</a></li>
             {% endfor %}
         </ul>
     </div>

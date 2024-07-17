@@ -6,17 +6,20 @@
 
 {% block content %}
 <div class="uk-width-medium-4-5">
-    <h1 class="uk-heading-large">Categories</h1>
+    <h1 class="uk-heading-large"><a href="{{ SITEURL }}/categories" class="uk-link-muted">Categories</a></h1>
     {% for category, articles in categories %}
-    <h2><a href="{{ SITEURL}}/{{ category.url}}" class="uk-link-muted">{{ category }}</a></h2>
+    <h2><a href="{{ SITEURL}}/{{ category.url|rm_html_suffix}}" class="uk-link-muted uk-heading-medium uk-text-bold">{{ category }}</a></h2>
         {% for article in articles %}
 
         <article class="uk-article">
-            <a href="{{ SITEURL }}/{{ article.url }}" class="uk-article-title uk-link-muted mg-list-title">{{ article.title }}</a>
+            <a id="{{article.title|title2url}}"href="{{ SITEURL }}/{{ article.url|rm_html_suffix}}" class="uk-article-title uk-link-muted mg-list-title">{{ article.title }}</a>
+
+            
             <p class="uk-article-meta">
+                <a href="#{{article.title|title2url}}"<?xml version="1.0" ?><svg fill="none" height="12" width="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></a>
                 <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.locale_date }}</time>
             </p>
-            <p>{{ ' '.join(article.content.split(' ')[0:75])|striptags }}...</p>
+            <section itemprop="articleBody">{{ article.content|generate_summary }}</section>
         </article>
         
         {% endfor %}

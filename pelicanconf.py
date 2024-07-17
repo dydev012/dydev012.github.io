@@ -26,7 +26,8 @@ SOCIAL = (
             ('github', 'https://github.com/dydev012'),
             ('envelope', 'mailto:dydev012@gmail.com'),)
 
-SUMMARY_MAX_LENGTH = 100
+SUMMARY_MAX_LENGTH = 0 # Above
+SUBSUMMARY_MAX_LENGTH = 100 # Below
 SUMMARY_END_SUFFIX = '…'
 DEFAULT_PAGINATION = False
 
@@ -51,21 +52,28 @@ MATH_JAX = {
 # enable search within theme
 TAG_SAVE_AS = ''
 AUTHOR_SAVE_AS = ''
-DIRECT_TEMPLATES = ('index', 'categories', 'archives', 'search', 'tipue_search')
+DIRECT_TEMPLATES = ('index', 'categories', 'tags', 'archives', 'search', 'tipue_search')
 TIPUE_SEARCH_SAVE_AS = 'tipue_search.json'
+
+TAG_URL = 'tag/{slug}.html'
+TAG_SAVE_AS = 'tag/{slug}.html'
+TAGS_SAVE_AS = 'tags.html'
+
 # Uncomment following line if you want doscument-relative URLs when developing
 # RELATIVE_URLS = True
 
-from filters import clean_mathjax, extract_first_p_tag_content, capitalize
+from filters import *
 
 def generate_summary(content):
     # if in markup form
-    nojax_text = extract_first_p_tag_content(content)
-    nojax_text = ' '.join(clean_mathjax(nojax_text).split(' ')[:SUMMARY_MAX_LENGTH])
+    nojax_text = clean_mathjax_markup(content)
+    nojax_text = ' '.join(clean_mathjax(nojax_text).split(' ')[:SUBSUMMARY_MAX_LENGTH])
     nojax_text = nojax_text.rstrip()
     return nojax_text
 
 JINJA_FILTERS = {
     'generate_summary': generate_summary,
-    # 'capitalize': capitalizes
+    'category2url': name2slug,
+    'title2url': title2url,
+    'rm_html_suffix': rm_html_suffix
 }

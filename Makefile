@@ -66,18 +66,23 @@ regenerate:
 	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 serve:
+	@$(MAKE) clean_prod
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
 serve-global:
+	@$(MAKE) clean_prod
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS) -b $(SERVER)
 
 devserver:
+	@$(MAKE) clean_dev
 	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR_DEV)" -s "$(CONFFILE_DEV)" $(PELICANOPTS)
 
 devserver-global:
+	@$(MAKE) clean_dev
 	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR_DEV)" -s "$(CONFFILE_DEV)" $(PELICANOPTS) -b 0.0.0.0
 
 publish:
+	@$(MAKE) clean_prod
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
 
 github: publish

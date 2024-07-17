@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Tags{% endblock %} 
+{% block description %}{% endblock %}
+
+{% include 'common_seo.html' %}
+
+{% block content %}
+<div class="uk-width-medium-4-5">
+    <h1 class="uk-heading-large"><a href="{{ SITEURL }}/tags" class="uk-link-muted">Tags</a></h1>
+    {% for tag, articles in tags %}
+    <h2><a href="{{ SITEURL}}/{{ tag.url}}" class="uk-link-muted uk-heading-medium uk-text-bold">{{ tag }}</a></h2>
+        {% for article in articles %}
+
+        <article class="uk-article">
+            <a id="{{article.title|title2url}}"href="{{ SITEURL }}/{{ article.url }}" class="uk-article-title uk-link-muted mg-list-title">{{ article.title }}</a>
+
+            
+            <p class="uk-article-meta">
+                <a href="#{{article.title|title2url}}"<?xml version="1.0" ?><svg fill="none" height="12" width="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></a>
+                <time datetime="{{ article.date.strftime('%Y-%m-%d') }}">{{ article.locale_date }}</time>
+            </p>
+            <section itemprop="articleBody">{{ article.content|generate_summary }}</section>
+        </article>
+        
+        {% endfor %}
+
+        <hr>
+
+    {% endfor %}
+</div>
+{% endblock %}

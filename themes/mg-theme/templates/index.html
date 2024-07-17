@@ -1,20 +1,35 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="uk-width-medium-4-5">
-
+{% block content_title %}
+{% endblock %}
 {% if articles %}
 {% for article in (articles_page.object_list if articles_page else articles) %}
             <article class="uk-article" itemtype="http://schema.org/BlogPosting" itemscope="itemscope" itemprop="blogPost">
-                <a href="{{ SITEURL }}/{{ article.url }}" class="uk-article-title uk-link-muted" itemprop="name">{{ article.title }}</a>
-                <p class="uk-article-meta"><time datetime="{{ article.date.strftime('%Y-%m-%d') }}" itemprop="datePublished">{{ article.locale_date }}</time> • <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{% if DISQUS_SITENAME %} • <br class="uk-visible-small"><i class="uk-icon-comment"></i> <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" itemprop="discussionUrl"></a>{% endif %}</p>
-</p>
+                <a id="{{article.title|title2url}}" href="{{ SITEURL }}/{{ article.url|rm_html_suffix }}" class="uk-article-title uk-link-muted" itemprop="name">{{ article.title }}</a> 
+                <p class="uk-article-meta">
+                    <a href="#{{article.title|title2url}}"<?xml version="1.0" ?><svg fill="none" height="12" width="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></a>
+                    • <time datetime="{{ article.date.strftime('%Y-%m-%d') }}" itemprop="datePublished">{{ article.locale_date }}</time>
+                    • <a href="{{ SITEURL }}/{{ article.category.url|rm_html_suffix }}">{{ article.category }}</a>
+                    
+                    {% if article.tags%}
+                    <span style="color: #444;">• [ </span>
+                    {% for tag in article.tags%}
+                    <a href="{{SITEURL}}/{{tag.url|rm_html_suffix}}">{{tag|category2url}}</a>{% if not loop.last %}<span style="color: #444;">, </span>{% endif %}
+                    {% endfor %}
+                    <span style="color: #444;"> ] </span>
+                    {% endif %}
+                    
+                </p>
                 <p class="uk-article-lead" itemprop="description">{{ article.summary|striptags }}</p>
                 <section itemprop="articleBody">{{ article.content|generate_summary }}</section>
-                <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread"></a>
+                
+                <a href="{{ SITEURL }}/{{ article.url|rm_html_suffix}}#disqus_thread"></a>
                 <hr class="uk-article-divider">
             </article>
+            
+        {% endfor %}
 
-{% endfor %}
 {% if DEFAULT_PAGINATION  and articles_paginator.num_pages > 1 %}
     <ul class="uk-pagination">
         {% if articles_previous_page %}<li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}"><i class="uk-icon-angle-double-left"></i></a></li>{% endif %}
