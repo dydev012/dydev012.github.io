@@ -5,6 +5,7 @@ PELICANOPTS=
 BASEDIR=$(CURDIR)
 INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
+OUTPUTDIR_DEV=$(BASEDIR)/output_dev
 CONFFILE=$(BASEDIR)/pelicanconf.py
 CONFFILE_DEV=$(BASEDIR)/pelicanconf_dev.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
@@ -51,8 +52,15 @@ help:
 html:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
 
+clean_prod:
+	rm -rf "$(OUTPUTDIR)"
+
+clean_dev:
+	rm -rf "$(OUTPUTDIR_DEV)"
+
 clean:
-	[ ! -d "$(OUTPUTDIR)" ] || rm -rf "$(OUTPUTDIR)"
+	@$(MAKE) clean_prod
+	@$(MAKE) clean_dev
 
 regenerate:
 	"$(PELICAN)" -r "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS)
@@ -64,10 +72,10 @@ serve-global:
 	"$(PELICAN)" -l "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE)" $(PELICANOPTS) -b $(SERVER)
 
 devserver:
-	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE_DEV)" $(PELICANOPTS)
+	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR_DEV)" -s "$(CONFFILE_DEV)" $(PELICANOPTS)
 
 devserver-global:
-	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(CONFFILE_DEV)" $(PELICANOPTS) -b 0.0.0.0
+	"$(PELICAN)" -lr "$(INPUTDIR)" -o "$(OUTPUTDIR_DEV)" -s "$(CONFFILE_DEV)" $(PELICANOPTS) -b 0.0.0.0
 
 publish:
 	"$(PELICAN)" "$(INPUTDIR)" -o "$(OUTPUTDIR)" -s "$(PUBLISHCONF)" $(PELICANOPTS)
